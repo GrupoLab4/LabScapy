@@ -19,16 +19,13 @@
 
 	\section{Creacion de Paquetes}
 		Para la creación de paquetes fue necesario aplicar nuestros conocimientos sobre la composición de un frame.
-		Los frames cuentan con un Preámbulo el cual lleva una secuencia específica de bits para que el receptor note si el
-		frame llega en buen estado o no, cuenta con un Delimitador de inicio el cual avisa al receptor que luego de una
-		secuencia definida de unos y ceros se dará inicio a la información del frame, también cuenta con la dirección de
-		destino y origen (MAC e IP), más adelante vienen unos bits donde se le da a conocer al receptor el largo de los datos
-		del frame, para luego continuar con el Encabezado y datos reales del frame (mensaje) y para finalizar la trama hay una
-		Secuencia de verificación donde se vuelve a verificar que esta esté sin errores.\\
+		Los frames cuentan con un Preámbulo el cual lleva una secuencia específica de bits para que el receptor note si el frame llega en buen estado o no, cuenta con un Delimitador de inicio el cual avisa al receptor que luego de una secuencia definida de unos y ceros se dará inicio a la información del frame, también cuenta con la dirección de destino y origen (MAC e IP), más adelante vienen unos bits donde se le da a conocer al receptor el largo de los datos del frame, para luego continuar con el Encabezado y datos reales del frame (mensaje) y para finalizar la trama hay una Secuencia de verificación donde se vuelve a verificar que esta esté sin errores.\\
 	\section{Cuestionario}
 	
 	  1.-¿Qué pasa cuando envío un paquete a la dirección FF:FF:FF:FF:FF:FF? ¿Quienes
 	     lo reciben? ¿Por qué?\\
+	     \begin{figure}[h]
+    			\includegraphics[width=4cm, height=4.3cm]{EnvioBroadcast.png}
 	  
 	     Cuando enviamos un paquete a la dirección FF:FF:FF:FF:FF:FF, este fue enviado a todos los equipos dentro de la red
  +	     Ethernet. Esto es debido a que la dirección antes mencionada esta designada para que la difusión de nuestro paquete sea
@@ -36,6 +33,8 @@
  
   	  2.-¿Qué pasa cuando envío un paquete a una MAC de otro equipo? ¿Quienes lo
   	      pueden recibir? ¿Por qué?\\
+  	      \begin{figure}[h]
+    			\includegraphics[width=4cm, height=4.3cm]{EnvioPaquetito.png}
  -	      
  +	      Cuando enviamos un paquete a la dirección MAC de otro equipo dentro de la red Ethernet, solamente el equipo que poseía
  +	      esa dirección fue capaz de recibirlo. Esto ocurre puesto a que, como indicamos anteriormente, al paquete le dimos una
@@ -44,13 +43,12 @@
   	  3.-¿Qué sucede si envía un paquete a una MAC que no corresponda a ningún equipo
   	      de la red? ¿Quienes lo pueden recepcionar? ¿Por qué?\\
  -	      \begin{figure}[h]
-    			\includegraphics[width=4cm, height=4.3cm]{MAC_noconocida.png}
+    			\includegraphics[width=4cm, height=4.3cm]{EnvioPaquetitoMalo.png}
  +	      Cuando enviamos un paquete a una dirección MAC que no correspondía a ningún equipo de la red, al enviarlo nos apareció
  +	      el mensaje: “WARNING: Mac address to reach destination not found. Using Broadcast.” Y posteriormente el paquete fue
- +	      enviado a todos los equipos pertenecientes a la red Ethernet. Se usa el Broadcast para así poder obtener todas las
- 	      direcciónes MAC mediante su IP, registrarlas en la lista arp y encontrar la que se dio como destinataria, pero como esta
- 	      no se encuentra en la red sigue mandando el paquete a todos los equipos que si están en la red para seguir buscando la
- 	      MAC solicitada.\\
+ +	      enviado a todos los equipos pertenecientes a la red Ethernet.Este usa el broadcast para asi poder tener todas sus MAC
+ 	      dejarlas asi mismo registradas en una lista llamada arp. En la cual luego de lograr esto revisa si la MAC de destino
+ 	      existe o no,como este caso se trata de una MAC que no corresponde a la red responde con un WARNING\\
 
  +	     
 	      
