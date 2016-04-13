@@ -3,6 +3,7 @@
 \author{Integrantes: Thomas Muñoz, Ignacio Yanjari, Dagoberto Navarrete, Ignacio López.}
 \date{14 de Abril de 2016}
 \usepackage{graphicx}
+\usepackage{float}
 \graphicspath{ {img/} }
 \udpschool{Escuela de Informática y Telecomunicaciones}
 
@@ -25,7 +26,7 @@
 		destino y origen (MAC e IP), más adelante vienen unos bits donde se le da a conocer al receptor el largo de los datos
 		del frame, para luego continuar con el Encabezado y datos reales del frame (mensaje) y para finalizar la trama hay una
 		Secuencia de verificación donde se vuelve a evaluar que esta esté sin errores.\\
-		\begin{figure}[h]
+		\begin{figure}[H]
 		    \centering
 		    \includegraphics[width=\textwidth]{frame.jpg}
 		    \caption{Frame según el estandar IEEE 802.3}
@@ -40,7 +41,7 @@
 	
 	  1.-¿Qué pasa cuando envío un paquete a la dirección FF:FF:FF:FF:FF:FF? ¿Quienes
 	     lo reciben? ¿Por qué?\\
-    	 	\begin{figure}[h]
+    	 	\begin{figure}[H]
 	        	\centering
 	        	\includegraphics[width=10cm, height=11cm]{EnvioPaquetito.png}
 			\caption{Envío en Broadcast}
@@ -52,7 +53,7 @@
  
   	  2.-¿Qué pasa cuando envío un paquete a una MAC de otro equipo? ¿Quienes lo
   	      pueden recibir? ¿Por qué?\\
-    		\begin{figure}[h]
+    		\begin{figure}[H]
   	        	\centering
   	          	\includegraphics[width=10cm, height=11cm]{EnvioPaquetitoMalo2.png}
   	          	\caption{Envío a una MAC}
@@ -65,7 +66,7 @@
  
   	  3.-¿Qué sucede si envía un paquete a una MAC que no corresponda a ningún equipo
   	      de la red? ¿Quienes lo pueden recepcionar? ¿Por qué?\\
-    		\begin{figure}[h]
+    		\begin{figure}[H]
   	        	\centering
   	          	\includegraphics[width=10cm,height=11cm]{EnvioPaquetitoMalo.png}
   	        	\caption{Envío a una MAC fuera de la red}
