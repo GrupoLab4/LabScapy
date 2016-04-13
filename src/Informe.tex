@@ -34,32 +34,36 @@
 	     lo reciben? ¿Por qué?\\
     			\includegraphics[width=4cm, height=4.3cm]{EnvioPaquetito.png}  
 	     Cuando enviamos un paquete a la dirección FF:FF:FF:FF:FF:FF, este fue enviado a todos los equipos dentro de la red
- +	     Ethernet. Esto es debido a que la dirección antes mencionada esta designada para que la difusión de nuestro paquete sea
- +	     enviado a cada dispositivo conectado a nuestra red LAN, a este tipo de difusión se le conoce como “Broadcast”.\\
+	     Ethernet. Esto es debido a que la dirección antes mencionada esta designada para que la difusión de nuestro paquete sea
+ 	     enviado a cada dispositivo conectado a nuestra red LAN, a este tipo de difusión se le conoce como “Broadcast”.\\
  
   	  2.-¿Qué pasa cuando envío un paquete a una MAC de otro equipo? ¿Quienes lo
   	      pueden recibir? ¿Por qué?\\
     			\includegraphics[width=4cm, height=4.3cm]{EnvioPaquetitoMalo2.png}
- -	      
- +	      Cuando enviamos un paquete a la dirección MAC de otro equipo dentro de la red Ethernet, solamente el equipo que poseía
- +	      esa dirección fue capaz de recibirlo. Esto ocurre puesto a que, como indicamos anteriormente, al paquete le dimos una
- +	      MAC de destino fija, entonces el paquete se encargó de viajar solamente al equipo que poseía esa dirección\\
+ 	      
+ 	      Cuando enviamos un paquete a la dirección MAC de otro equipo dentro de la red Ethernet, solamente el equipo que poseía
+ 	      esa dirección fue capaz de recibirlo. Esto ocurre puesto a que, como indicamos anteriormente, al paquete le dimos una
+ 	      MAC de destino fija, entonces el paquete se encargó de viajar solamente al equipo que poseía esa dirección\\
  
   	  3.-¿Qué sucede si envía un paquete a una MAC que no corresponda a ningún equipo
   	      de la red? ¿Quienes lo pueden recepcionar? ¿Por qué?\\
     			\includegraphics[width=4cm, height=4.3cm]{EnvioPaquetitoMalo.png}
- +	      Cuando enviamos un paquete a una dirección MAC que no correspondía a ningún equipo de la red, al enviarlo nos apareció
- +	      el mensaje: “WARNING: Mac address to reach destination not found. Using Broadcast.” Y posteriormente el paquete fue
- +	      enviado a todos los equipos pertenecientes a la red Ethernet. Se usa el Broadcast para así poder obtener todas las
+ 	      Cuando enviamos un paquete a una dirección MAC que no correspondía a ningún equipo de la red, al enviarlo nos apareció
+ 	      el mensaje: “WARNING: Mac address to reach destination not found. Using Broadcast.” Y posteriormente el paquete fue
+ 	      enviado a todos los equipos pertenecientes a la red Ethernet. Se usa el Broadcast para así poder obtener todas las
  	      direcciónes MAC mediante su IP, registrarlas en la lista arp y encontrar la que se dio como destinataria, pero como esta
  	      no se encuentra en la red sigue mandando el paquete a todos los equipos que si están en la red para seguir buscando la
  	      MAC solicitada.\\
 
- +	     
+ 	     
 	      
 
 \chapter{Conclusión}
-  
+  	      En esta experiencia de laboratorio que tuvimos logramos comprender cómo crear correctamente un paquete con Scapy,
+  	      entendiendo todos sus componentes y cómo podemos enviarlo al o a los destinatarios que nosotros deseemos, también
+  	      entendimos la diferencia entre los comandos “send()” y “sendp()”, la capa en la que trabajan y cuando usar cada uno,
+  	      además entendimos como es que funciona un Switch y un Hub con respecto al envío de paquetes y sabemos cómo trabajar con
+  	      Wireshark para encontrar los paquetes del tipo que queramos o provenientes de la IP que nosotros escojamos.
 \begin{thebibliography}{x}
 
 \end{thebibliography}
