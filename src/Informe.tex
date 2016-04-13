@@ -32,6 +32,26 @@
 		    \caption{Frame según el estandar IEEE 802.3}
 		    %\label{fig:my_label}
 		\end{figure}
+		La diferencia de crear paquetes y mandarlos hacia un destino gracias a un 
+ 		switch o un HUB es muy diferente ya que estos tienen una caracteristica 
+ 		especifica. \\
+ 		Al mandar paquetes en la red por medio de un HUB estos paquetes siempre 
+ 		le llegaran a todos los dispositivos conectados a la red.Mientras que si
+ 		se mandaran paquetes como por intermedio de un switch estos dependerian de 
+ 		las direcciones de destino  y sus comandos caracteristicos.\\
+		 Por ejemplo:  \\
+		 * Para lograr mandar un paquete a un solo equipo en el switch
+ 		se deberia ocupar el comando sendp("nombrepaquete"). pero para que se ocupe 
+		 en modo broadcast se podria hacer con 2  metodos, el primero a ocupar seria
+ 		cambiando la direccion MAC de destino modificandola por FF:FF:FF:FF:FF:FF con
+ 		sus respectivas caracteristicas y mandarlas con el comando sendp("nombrepaquete"),
+		 el 2do metodo seria crear un paquete de forma que empieze desde la capa de red(IP())
+ 		para asi poder mandarlo de forma broadcast con el comando send("nombrepaquete")
+ 		De esta forma el switch puede funcionar como un HUB pero que puede tanto hacer un proceso
+ 		de unicast o broadcast.\\
+ 		*Al momento de querer generar un broadcast en un HUB simplemente es tan facil como mandar
+		paquete con direccion src y ip src desde el pc que uno este ocupando y este llegara a cada
+ 		dispositivo de nuestra red.\\
 		{\bf \large Envío Broadcast}\\
 		Lo primero que se procede es a verificar la Mac y la IP de los  equipos a utilizar, esto se hace a través del comando “ifconfig”. Ya una vez conocida la IP y la Mac de los equipos se continua a la creación de los paquetes, lo primero que se procede es a crear una variable y asignarle el comando  “Ether()” el cual trabaja en la segunda capa de la pila OSI (capa de enlace), después se la asigna un valor a la componente “dst” y “src”, estos valores son la Mac de destino y la de origen respectivamente, para la de destino se usó “ff:ff:ff:ff:ff:ff” ya que era una transmisión de tipo broadcast. Después se crea otra variable para la cual se le asignara el comando “IP()” el cual trabaja en la tercera capa de la pila OSI (capa de red), para esta variable se modificaran nuevamente las componentes “dst” y “src”,estas componentes corresponden a la IP de destino y a la de origen respectivamente, a “dst” se le asignara “255.255.255.255”, se le asigna este valor ya que se quiere hacer una transmisión de tipo broadcast, mientras al componente “src” se le asigna la IP del equipo. Posteriormente se crea una nueva variable y a esta se le asigna el comando “ICMP()” el cual trabaja en la cuarta capa de la pila OSI (capa de transporte). Continuando se crea otra variable y a esta se le asigna el comando “RAW()”, una vez hecho todo lo anterior se cree una nueva variable y se le asignan las variables anteriores separadas de un “/”. Finalmente se procede a enviar el paquete usando el comando “sendp“, ya que este comando sirve para enviar paquetes que van desde la capa 2 de red, una vez enviado el paquete se observa que es recibido en tos los equipos que estábamos utilizando. Después realizamos otro paquete pero este paquete no incluía la variable asociada al comando “Ether()”, este paquete lo enviamos con el comando “send” ya que este trabaja con paquetes desde la tercera capa en adelante, una vez realizado lo anterior se comprueba que el paquete sea recibido en todos los equipos que estábamos utilizando. Todas las comprobaciones que se realizaban se hacían gracias al programa “wireshark” el cual nos permitía observar los paquetes que entraban y salían al ordenador.\\
 		{\bf \large Envío a otro equipo}\\
