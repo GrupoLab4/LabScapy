@@ -24,9 +24,13 @@
 		secuencia definida de unos y ceros se dará inicio a la información del frame, también cuenta con la dirección de
 		destino y origen (MAC e IP), más adelante vienen unos bits donde se le da a conocer al receptor el largo de los datos
 		del frame, para luego continuar con el Encabezado y datos reales del frame (mensaje) y para finalizar la trama hay una
-		Secuencia de verificación donde se vuelve a verificar que esta esté sin errores.\\
-		
-		\includegraphics[width=\textwidth]{frame.jpg}\\
+		Secuencia de verificación donde se vuelve a evaluar que esta esté sin errores.\\
+		\begin{figure}[h]
+		    \centering
+		    \includegraphics[width=\textwidth]{frame.jpg}
+		    \caption{Frame según el estandar IEEE 802.3}
+		    %\label{fig:my_label}
+		\end{figure}
 		(frame según el estandar IEEE 802.3)
 		{\bf Envio Broadcast}\\
 		Lo primero que se procede es a verificar la Mac y la IP de los  equipos a utilizar, esto se hace a través del comando “ifconfig”. Ya una vez conocida la IP y la Mac de los equipos se continua a la creación de los paquetes, lo primero que se procede es a crear una variable y asignarle el comando  “Ether()” el cual trabaja en la segunda capa de la pila OSI (capa de enlace), después se la asigna un valor a la componente “dst” y “src”, estos valores son la Mac de destino y la de origen respectivamente, para la de destino se usó “ff:ff:ff:ff:ff:ff” ya que era una transmisión de tipo broadcast. Después se crea otra variable para la cual se le asignara el comando “IP()” el cual trabaja en la tercera capa de la pila OSI (capa de red), para esta variable se modificaran nuevamente las componentes “dst” y “src”,estas componentes corresponden a la IP de destino y a la de origen respectivamente, a “dst” se le asignara “255.255.255.255”, se le asigna este valor ya que se quiere hacer una transmisión de tipo broadcast, mientras al componente “src” se le asigna la IP del equipo. Posteriormente se crea una nueva variable y a esta se le asigna el comando “ICMP()” el cual trabaja en la cuarta capa de la pila OSI (capa de transporte). Continuando se crea otra variable y a esta se le asigna el comando “RAW()”, una vez hecho todo lo anterior se cree una nueva variable y se le asignan las variables anteriores separadas de un “/”. Finalmente se procede a enviar el paquete usando el comando “sendp“, ya que este comando sirve para enviar paquetes que van desde la capa 2 de red, una vez enviado el paquete se observa que es recibido en tos los equipos que estábamos utilizando. Después realizamos otro paquete pero este paquete no incluía la variable asociada al comando “Ether()”, este paquete lo enviamos con el comando “send” ya que este trabaja con paquetes desde la tercera capa en adelante, una vez realizado lo anterior se comprueba que el paquete sea recibido en todos los equipos que estábamos utilizando. Todas las comprobaciones que se realizaban se hacían gracias al programa “wireshark” el cual nos permitía observar los paquetes que entraban y salían al ordenador.//
@@ -34,14 +38,24 @@
 	
 	  1.-¿Qué pasa cuando envío un paquete a la dirección FF:FF:FF:FF:FF:FF? ¿Quienes
 	     lo reciben? ¿Por qué?\\
-    			\includegraphics[width=4cm, height=4.3cm]{EnvioPaquetito.png}  
+    	 	\begin{figure}[h]
+	        	\centering
+	        	\includegraphics[width=10cm, height=11cm]{EnvioPaquetito.png}
+			\caption{Envío en Broadcast}
+	        	% \label{fig:my_label} %aun no se para que se usa pero se ve util
+	 	\end{figure}
 	     Cuando enviamos un paquete a la dirección FF:FF:FF:FF:FF:FF, este fue enviado a todos los equipos dentro de la red
 	     Ethernet. Esto es debido a que la dirección antes mencionada esta designada para que la difusión de nuestro paquete sea
  	     enviado a cada dispositivo conectado a nuestra red LAN, a este tipo de difusión se le conoce como “Broadcast”.\\
  
   	  2.-¿Qué pasa cuando envío un paquete a una MAC de otro equipo? ¿Quienes lo
   	      pueden recibir? ¿Por qué?\\
-    			\includegraphics[width=4cm, height=4.3cm]{EnvioPaquetitoMalo2.png}
+    		\begin{figure}[h]
+  	        	\centering
+  	          	\includegraphics[width=10cm, height=11cm]{EnvioPaquetitoMalo2.png}
+  	          	\caption{Envío a una MAC}
+  	          	%\label{fig:my_label}
+  		\end{figure}
  	      
  	      Cuando enviamos un paquete a la dirección MAC de otro equipo dentro de la red Ethernet, solamente el equipo que poseía
  	      esa dirección fue capaz de recibirlo. Esto ocurre puesto a que, como indicamos anteriormente, al paquete le dimos una
@@ -49,7 +63,13 @@
  
   	  3.-¿Qué sucede si envía un paquete a una MAC que no corresponda a ningún equipo
   	      de la red? ¿Quienes lo pueden recepcionar? ¿Por qué?\\
-    			\includegraphics[width=4cm, height=4.3cm]{EnvioPaquetitoMalo.png}
+    		\begin{figure}[h]
+  	        	\centering
+  	          	\includegraphics[width=10cm,height=11cm]{EnvioPaquetitoMalo.png}
+  	        	\caption{Envío a una MAC fuera de la red}
+  	            	%\label{fig:my_label}
+  	        \end{figure}
+ 	      Cuando enviamos 
  	      Cuando enviamos un paquete a una dirección MAC que no correspondía a ningún equipo de la red, al enviarlo nos apareció
  	      el mensaje: “WARNING: Mac address to reach destination not found. Using Broadcast.” Y posteriormente el paquete fue
  	      enviado a todos los equipos pertenecientes a la red Ethernet. Se usa el Broadcast para así poder obtener todas las
