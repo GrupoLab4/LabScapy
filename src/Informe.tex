@@ -16,10 +16,10 @@
 	utilidad de Wireshark al tener que filtrar y capturar los paquetes que enviábamos entre nuestros equipos para verificar que se
 	hayan recibido correctamente y estos no tuvieran algún tipo de problema.
 \chapter{Actividades}
-	\section{Instalacion de software}
-	Como primer paso se abre la consola del pc y se siguen las siguentes instrucciones:\\
+	\section{Instalación de software}
+	Como primer paso se abre la consola del PC y se siguen las siguientes instrucciones:\\
 	Primero antes de instalar el software se  verifica si éste lo tiene o no.
-	esto se hace gracias al comando para iniciar scapy. El cual es: sudo scapy.\\
+	esto se hace gracias al comando para iniciar Scapy. El cual es: sudo scapy.\\
 	Si al momento de ejecutar el programa responde con un :  sudo: scapy: command not found 
 	este no se encuentra instalado. \\
 	En caso contrario iniciara el software correctamente y se puede usar.
@@ -46,22 +46,21 @@
 		    \caption{Frame según el estandar IEEE 802.3}
 		    %\label{fig:my_label}
 		\end{figure}
-\chapter{Switch VS Hub}
 	\section{Switch}
-		Exite una gran diferencia entre enviar paquetes en equipos conectados a un switch, y en equipos conectados a un hub. a
-		continuación se describirán los pasos llevados a cabo para enviar paquetes entre equipos conectados a un switch\\
-		{\bf \large Envío Broadcast}\\
+		Existe una gran diferencia entre enviar paquetes en equipos conectados a un switch, y en equipos conectados a un HUB. a
+		continuación se describirán los pasos llevados a cabo para enviar paquetes entre equipos conectados a un switch\\\\
+		{\bf \large Envío Broadcast:}\\\\
 		Lo primero que hacemos es verificar la Mac y la IP de los equipos que vamos a utilizar, esto se hace a través del
-		comando “ifconfig”. Ya una vez conocida la IP y la Mac de los equipos se procede a la creación de los paquetes, lo
+		comando “ifconfig”. Ya una vez conocida la IP y la MAC de los equipos se procede a la creación de los paquetes, lo
 		primero que debemos hacer es crear una variable y asignarle el comando “Ether()”, el cual trabaja en la segunda capa
-		del modelo OSI (capa de enlace), después se la asigna un valor a la componente “dst” y “src”, estos valores son la Mac
+		del modelo OSI (capa de enlace), después se la asigna un valor a la componente “dst” y “src”, estos valores son la MAC
 		de destino
 		y la de origen respectivamente, para la de destino se usó “ff:ff:ff:ff:ff:ff” ya que era una transmisión de tipo
 		Broadcast. Después se crea otra variable a la cual se le asignará el comando “IP()”, el cual trabaja en la tercera
 		capa del modelo OSI (capa de red), para esta variable se modificarán nuevamente las componentes “dst” y “src”, estas
 		componentes corresponden a la IP de destino y a la de origen respectivamente, a “dst” se le asignara “255.255.255.255"
 		, se le asigna este valor ya que se quiere hacer una transmisión de tipo Broadcast, mientras que al componente “src”
-		se le asigna la IP del equipo que envia el paquete. Posteriormente se crea una nueva variable y a esta se le asigna el
+		se le asigna la IP del equipo que envía el paquete. Posteriormente se crea una nueva variable y a esta se le asigna el
 		comando “ICMP()” el cual trabaja en la cuarta capa del modelo OSI (capa de transporte). Continuando se crea otra
 		variable y a esta se le asigna el comando “Raw()”, una vez hecho todo lo anterior se crea una nueva variable (nuestro
 		paquete)  y se le asignan las variables anteriores separadas de un “/” en el mismo orden que fueron nombradas.
@@ -71,8 +70,8 @@
 		este paquete lo enviamos con el comando “send” ya que este trabaja con paquetes desde la tercera capa en adelante, una
 		vez realizado lo anterior se comprueba que el paquete sea recibido en todos los equipos que estábamos utilizando.
 		Todas las comprobaciones que se realizaban se hacían gracias al programa “wireshark” el cual nos permitía observar los
-		paquetes que entraban y salían del ordenador.\\
-		{\bf \large Envío a otro equipo}\\
+		paquetes que entraban y salían del ordenador.\\\\
+		{\bf \large Envío a otro equipo:}\\\\
 		Para la creación de un paquete enviado a una dirección Mac específica y una IP correspondiente a la de un equipo de la
 		red, se vuelven a crear nuevas variables y se le asignarán los comandos: “Ether()”, “IP()”, “ICMP()” y “Raw()”, pero
 		esta vez cambiaremos la componente “dst” de “Ether()” por la dirección Mac del equipo que deseamos enviar los paquetes
@@ -85,27 +84,28 @@
 		apilaremos todas las variables con sus respectivos comandos asociados,  pero esta vez se deberá enviar 2 veces el
 		paquete, ya que la primera vez hará una transmisión tipo Broadcast para encontrar la IP del equipo de destino, y el
 		segundo envio solo llegará al equipo de destino, esto se observa en la captura de paquetes que hizo wireshark en el
-		equipo destinatario.\\
-		{\bf \large Envío Mac inexistente}\\
-		A continuación para enviar un paquete con la Mac errónea, se procede hacer los mismos procesos anteriormente
+		equipo destinatario.\\\\
+		{\bf \large Envío MAC inexistente:}\\\\
+		A continuación para enviar un paquete con la MAC errónea, se procede hacer los mismos procesos anteriormente
 		mencionados, se vuelven a crear variables y se le asocia a cada una los comandos mencionados los en párrafos
-		anteriores. Esta vez se modificara la Mac de destino (“dst”)  por una Mac de un equipo que no esté conectado a la red
+		anteriores. Esta vez se modificara la MAC de destino (“dst”)  por una MAC de un equipo que no esté conectado a la red
 		del laboratorio. Después se volverá a apilar todas las variables en el paquete que deseamos enviar, luego el paquete
 		será enviado con el comando “sendp” ya que este trabaja con la segunda capa del modelo OSI, por lo que se verá
 		obligado a trabajar con nuestra Mac errónea. Una vez enviado el paquete se procede a verificar en Wireshark, al
-		observarlo nos damos cuenta de que el paquete enviado, al no encontrar la Mac de destino procede a hacer una
+		observarlo nos damos cuenta de que el paquete enviado, al no encontrar la MAC de destino procede a hacer una
 		transmisión de tipo Broadcast y envía el paquete a todos los equipos conectados a la red.\\
-	\section{Hub}\\
+	\section{HUB}
 	 	Al mandar paquetes en la red por medio de un HUB estos paquetes siempre 
  		le llegaran a todos los dispositivos conectados a la red.Mientras que si
- 		se mandaran paquetes como por intermedio de un switch estos dependerian de 
- 		las direcciones de destino  y sus comandos caracteristicos.\\
+ 		se mandaran paquetes como por intermedio de un switch estos dependerían de 
+ 		las direcciones de destino  y sus comandos característicos.\\
  		El HUB al hacer  los mismos procedimientos anteriores los cuales eran :\\
  		-Enviar paquete con MAC no existente en la red\\
- 		-Enviar paquete con direccion MAC de destino FF:FF:FF:FF:FF:FF\\
+ 		-Enviar paquete con dirección MAC de destino FF:FF:FF:FF:FF:FF\\
  		-Enviar paquete a la MAC de un equipo en especifico de la red\\
  		Este HUB repite el paquete hacia todos los dispositivos con cualquiera
  		de las formas anteriores realizadas en el switch.
+ 		\newpage
 	\section{Cuestionario}
 	
 	  1.-¿Qué pasa cuando envío un paquete a la dirección FF:FF:FF:FF:FF:FF? ¿Quienes
@@ -119,6 +119,7 @@
 	     Cuando enviamos un paquete a la dirección FF:FF:FF:FF:FF:FF, este fue enviado a todos los equipos dentro de la red
 	     Ethernet. Esto es debido a que la dirección antes mencionada esta designada para que la difusión de nuestro paquete sea
  	     enviado a cada dispositivo conectado a nuestra red LAN, a este tipo de difusión se le conoce como “Broadcast”.\\
+ 	     \newpage
  
   	  2.-¿Qué pasa cuando envío un paquete a una MAC de otro equipo? ¿Quienes lo
   	      pueden recibir? ¿Por qué?\\
@@ -132,9 +133,9 @@
  	      Cuando enviamos un paquete a la dirección MAC de otro equipo dentro de la red Ethernet, solamente el equipo que poseía
  	      esa dirección fue capaz de recibirlo. Esto ocurre puesto a que, como indicamos anteriormente, al paquete le dimos una
  	      MAC de destino fija, entonces el paquete se encargó de viajar solamente al equipo que poseía esa dirección\\
- 
+        \newpage
   	  3.-¿Qué sucede si envía un paquete a una MAC que no corresponda a ningún equipo
-  	      de la red? ¿Quienes lo pueden recepcionar? ¿Por qué?\\
+  	      de la red? ¿Quienes lo pueden recibir? ¿Por qué?\\
     		\begin{figure}[H]
   	        	\centering
   	          	\includegraphics[width=10cm,height=11cm]{EnvioPaquetitoMalo.png}
@@ -145,7 +146,7 @@
  	      Cuando enviamos un paquete a una dirección MAC que no correspondía a ningún equipo de la red, al enviarlo nos apareció
  	      el mensaje: “WARNING: Mac address to reach destination not found. Using Broadcast.” Y posteriormente el paquete fue
  	      enviado a todos los equipos pertenecientes a la red Ethernet. Se usa el Broadcast para así poder obtener todas las
- 	      direcciónes MAC mediante su IP, registrarlas en la lista arp y encontrar la que se dio como destinataria, pero como esta
+ 	      direcciones MAC mediante su IP, registrarlas en la lista ARP y encontrar la que se dio como destinataria, pero como esta
  	      no se encuentra en la red sigue mandando el paquete a todos los equipos que si están en la red para seguir buscando la
  	      MAC solicitada.\\
 
