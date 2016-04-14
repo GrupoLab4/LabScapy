@@ -10,6 +10,7 @@
 \begin{document}
 \maketitle
 \tableofcontents
+\listoffigures
 \chapter{Introducción}
 	En este laboratorio buscamos aprender cómo se crean los paquetes con Scapy y como se organizan estos, además de entender la
 	diferencia entre enviar un paquete a un equipo específico o a todos los pertenecientes a la red, a su vez entendimos la
@@ -93,7 +94,7 @@
 		será enviado con el comando “sendp” ya que este trabaja con la segunda capa del modelo OSI, por lo que se verá
 		obligado a trabajar con nuestra Mac errónea. Una vez enviado el paquete se procede a verificar en Wireshark, al
 		observarlo nos damos cuenta de que el paquete enviado, al no encontrar la MAC de destino procede a hacer una
-		transmisión de tipo Broadcast y envía el paquete a todos los equipos conectados a la red.\\
+		transmisión de tipo Broadcast y envía el paquete a todos los equipos conectados a la red.
 	\section{HUB}
 	 	Al mandar paquetes en la red por medio de un HUB estos paquetes siempre 
  		le llegaran a todos los dispositivos conectados a la red.Mientras que si
@@ -105,15 +106,14 @@
  		-Enviar paquete a la MAC de un equipo en especifico de la red\\
  		Este HUB repite el paquete hacia todos los dispositivos con cualquiera
  		de las formas anteriores realizadas en el switch.
- 		\begin{figure}[h]
+ 		\begin{figure}[H]
 	\centering
-	\includegraphics[width=\textwidth]{hub.jpg}
-	\includegraphics[width=\textwidth]{hub_pc2.jpg}
-	\includegraphics[width=\textwidth]{Paquete_pchub2.jpg}
-	\caption{Captura de la terminal en proceso de instalación de Scapy}
+	\includegraphics[width=5cm]{hub.jpg}
+	\includegraphics[width=5cm]{hub_pc.jpg}
+	\includegraphics[width=5cm]{Paquete_pchub2.jpg}
+	\caption{Red conectada al HUB}
 	%\label{fig:my_label}
-	\end{figure}\\
- 		\newpage
+	\end{figure}
 	\section{Cuestionario}
 	
 	  1.-¿Qué pasa cuando envío un paquete a la dirección FF:FF:FF:FF:FF:FF? ¿Quienes
@@ -168,6 +168,9 @@
   	      uno,se capta la forma en como funciona un Switch y un Hub con respecto al envío de paquetes y se aprendió trabajar con
   	      Wireshark para encontrar los paquetes del tipo que queramos o provenientes de la IP que cada uno  escoja.
 \begin{thebibliography}{x}
-
+\bibitem{Scapy Documentation} \textsc{Scapy Documentation},
+\textit{http://www.secdev.org/projects/scapy/files/scapydoc.pdf}
+\bibitem{Cisco Osi} \textsc{Cisco},
+\textit{ http://www.cisco.com/cpress/cc/td/cpress/fund/ith/ith01gb.htm#xtocid166844}
 \end{thebibliography}
 \end{document}
